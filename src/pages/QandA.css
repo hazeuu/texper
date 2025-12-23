@@ -1,0 +1,21 @@
+.content_clearfix {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-direction: row;
+}
+
+.item_qanda:nth-child(1),
+.item_qanda:nth-child(2),
+.item_qanda:nth-child(3),
+.item_qanda:nth-child(4),
+.item_qanda:nth-child(5),
+.item_qanda:nth-child(6) {
+  width: 25%;
+  border: 2px solid red;
+  height: 15%;
+  
+}

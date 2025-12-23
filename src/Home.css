@@ -1,0 +1,57 @@
+body {
+  min-height: 100vh; /* full chiều cao màn hình */
+  margin: auto;
+}
+
+main {
+  flex: 1; /* đẩy footer xuống */
+}
+
+footer {
+    text-align: center;
+    font-size: 15px;
+    font-weight: 500;
+    color: #e3e9ff;
+    display: flex;
+    align-items: last baseline;
+}
+
+.format_Home {
+text-align: center;
+margin: auto;
+}
+h1 {
+animation: slideIn 1s ease-out forwards;  
+}
+
+.format_Home h2{
+  animation: slideIn 2s ease-out;  
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+body {
+  font-size: 16px;
+  background-image: linear-gradient(135deg, #5af4c3, #6cebe1, #0b9fd5);
+  background-size: 400% 400%;
+  animation: gradientFlow 15s ease infinite;
+  transition: background-image 1.2s ease;
+  color: #1d166c;
+  min-height: 100vh;
+  width: 100%;
+}
+@media (prefers-color-scheme: dark) {body{
+  background-image: linear-gradient(135deg, #495851, #35353b, #4b5872);
+  background-size: 400% 400%;
+  animation: gradientFlow 13s ease infinite;
+  color: #eaeaea;
+}}

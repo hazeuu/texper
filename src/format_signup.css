@@ -1,0 +1,132 @@
+/* Mặc định cho màn hình lớn */
+form {
+  width: 400px;
+  margin: auto;
+}
+
+/* Khi màn hình nhỏ hơn 600px (điện thoại) */
+@media (max-width: 600px) {
+  form {
+    width: 90%;
+  }
+  input, select, button {
+    width: 100%;
+    font-size: 16px;
+  }
+}
+/* Desktop */
+body {
+  font-size: 16px;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  body {
+    font-size: 15px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+/* Định dạng tổng thể cho container */
+
+.fill-border_signup{
+  max-width: 580px;
+  margin: 100px auto;
+  opacity: 0;
+  animation: slideDown 0.8s ease-out forwards;
+}
+.signup-container h1 {
+  color: #e3e9ff;
+  margin-bottom: 10px;
+}
+
+/* Form chính */
+.signup-form {
+  gap: 3px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+.signup-form button {
+margin: 0 auto;
+}
+
+/* Label */
+.signup-form label {
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 10px;
+  color: #e3e9ff;
+}
+
+/* Ô nhập liệu */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="tel"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: Lato, sans-serif;
+  transition: 0.8s;
+  align-items: center;
+}
+
+input:focus {
+  border-color: #4c9baf;
+  box-shadow: 0 0 5px #4c7caf;
+  outline: none;
+}
+
+/* Checkbox label */
+
+input[type="checkbox"] {
+  accent-color: #4c9baf;
+  transform: scale(1.5);
+}
+
+/* Nút đăng ký */
+.signup-form button {
+  background: linear-gradient(135deg, #6396e3, #2281e0);
+  border: none;
+  color: white;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 100%;
+  margin-top: 15px;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #3529dc, #4928be);
+  transform: scale(1.05);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* Responsive cho mobile */
+@media (max-width: 600px) {
+  .signup-container {
+    width: 90%;
+    padding: 15px;
+  }
+  .signup-form input,
+  .signup-form button {
+    font-size: 15px;
+  }
+}

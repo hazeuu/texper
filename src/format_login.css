@@ -1,0 +1,194 @@
+/* Mặc định cho màn hình lớn */
+form {
+  width: 400px;
+  margin: auto;
+}
+
+/* Khi màn hình nhỏ hơn 600px (điện thoại) */
+@media (max-width: 600px) {
+  form {
+    width: 90%;
+  }
+  input, select, button {
+    width: 100%;
+    font-size: 16px;
+  }
+}
+/* Desktop */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  body {
+    font-size: 15px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+  }
+}
+.fill-border_group{
+  margin: 100px auto;
+  position: relative;
+  top: -30px;
+  opacity: 0;
+  animation: slideDown 0.8s ease-out forwards;
+}
+@keyframes slideDown{
+  from {
+    top:-40px;
+    opacity: 0;
+  }
+  to {
+    top:0;
+    opacity: 1;
+  }
+}
+
+.fill-agency-branding{
+    max-width: 400px;
+    padding: 30px;
+    text-align: center;
+    font-family: 'lato';
+    color: #25e610;
+    font-size: large;
+    font-weight: 600;
+    text-decoration: none;
+}
+.fill-border_all{
+    max-width: 100vw;
+    margin: 3vw auto;
+    font-family: 'Lato';
+}
+.fill-border_all h1{
+  max-width: fit-content;
+  text-align: center;
+  margin: auto;
+}
+.fill-border_content{
+    border: 3px solid white;
+    border-radius: 25px;
+    padding: 10px;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 450px;
+    margin: 50px auto;
+    animation: slideDown 0.8s ease-out forwards;
+}
+.fill-border_content input[type="text"],
+.fill-border_content input[type="password"]{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 300px;
+}
+.fill-border_content button{
+  width: 250px;
+}
+.fill-border_content h2{
+padding: 15px;
+}
+.signintype {
+  display: flex;
+  gap: 5px;
+  font-weight: bold;
+  justify-content: center;
+  padding: 4px;
+}
+input[type="name"],
+input[type="time"],
+input[type="text"], 
+input[type="email"], 
+input[type="password"],
+input[type="number"],
+select[type="object"],
+input[type="date"] {
+  width: 225px ;                /* rộng hết khung chứa */
+  padding: 10px;              /* khoảng cách trong */
+  margin: 6px auto;              /* khoảng cách ngoài */
+  border: 2px solid #ccc;     /* viền xám */
+  border-radius: 8px;         /* bo góc */
+  font-size: 14px;
+  font-family: Lato;
+  transition: 0.3s;           /* tạo hiệu ứng mượt */
+  text-align: left;
+}
+label {
+  position: absolute;
+  top: 14px;
+  pointer-events: none;
+  background: none;
+  transition: all 0.3s ease;
+}
+input[type="checkbox"] {
+  width: 10px;       
+  height: 10px;         /* rộng hết khung chứa */             /* khoảng cách trong */            /* khoảng cách ngoài */
+  text-align: left;
+  font-size: 14px;
+  transition: 0.3s;           /* tạo hiệu ứng mượt */
+}
+input:focus {
+  border-color: #4c9baf;      /* đổi màu viền khi bấm vào */
+  box-shadow: 0 0 5px #4c7caf;/* hiệu ứng sáng nhẹ */
+  outline: none;              /* bỏ viền mặc định của trình duyệt */
+}
+button {
+  background: linear-gradient(135deg, #6396e3, #2281e0); /* màu gradient */
+  border: none;
+  color: white;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 250px;
+  margin-bottom: 5px;
+  margin-top: 15px;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #3529dc, #4928be); /* đổi màu khi hover */
+  transform: scale(1.05);   /* hơi phóng to */
+}
+
+button:active {
+  transform: scale(0.98);   /* nhấn xuống thì nhỏ lại tí */
+}
+a {
+  color: lightblue;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 0;
+} 
+.fill-border_forgot{
+    height: auto;
+    border-radius: 25px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    max-width: 450px;
+    margin: 50px auto;
+    animation: slideDown 1.2s ease-out forwards;
+}
+.fill-border_forgot input[type="email"] {
+  width: 350px;
+  transform: scale(1.0);
+  transition: transform 0.1s ease-out forwards;
+}
+.fill-border_forgot input[type="email"]:hover {
+  width: 350px;
+  transform: scale(1.05);
+  transition: transform 0.1s ease-out forwards;
+}
+
+.checkbox_layout{
+text-align: center;
+margin: auto;
+}

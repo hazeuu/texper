@@ -1,0 +1,116 @@
+.about{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    margin: auto;
+    width: 1880px;
+    text-align: left;
+}
+.about h1{
+    border: 3px solid red;
+    text-align: center;
+}
+.notifying{
+    text-align: center;
+}
+.container {
+  display: flex;
+  gap: 2%;
+  flex-wrap: wrap;
+  align-content: start;
+}
+
+.item:nth-child(1),
+.item:nth-child(4) {
+  width: 100%;
+  height: 5%;
+  padding-bottom: 15px;
+}
+
+.item:nth-child(2) {
+  width: 25%;
+  height: 75%;
+}
+
+.item:nth-child(3) {
+  flex-grow: 1;
+  height: 75%;
+  margin: 30px auto;
+}
+.chucnang {
+  display: none;
+  opacity: 0;
+  transform: translateX(-40px);
+  position: absolute;
+  transition: opacity 250ms ease, transform 250ms ease;
+}
+
+/* Khi hiện */
+.chucnang.enter {
+  display: block;
+  animation: slideInLeft 0.35s ease forwards;
+}
+
+/* Khi ẩn */
+.chucnang.exit {
+  animation: slideOutLeft 0.25s ease forwards;
+}
+
+/* Animation */
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-40px);
+    opacity: 0;
+  }
+}
+
+.nhiemvu {
+  display: none;
+  opacity: 0;
+  transform: translateX(-40px);
+  position: absolute;
+  transition: opacity 250ms ease, transform 250ms ease;
+}
+
+/* Khi hiện */
+.nhiemvu.enter {
+  display: block;
+  animation: slideInLeft 0.35s ease forwards;
+}
+
+/* Khi ẩn */
+.nhiemvu.exit {
+  animation: slideOutLeft 0.25s ease forwards;
+}
+
+.contenting:nth-child(1),
+.contenting:nth-child(2),
+.contenting:nth-child(3),
+.contenting:nth-child(4),
+.contenting:nth-child(5),
+.contenting:nth-child(6),
+.contenting:nth-child(7){
+border: 2px solid lightblue;
+padding: 10px;
+font-size: large;
+font-style: italic;
+font-family: Lato;
+font-weight: 500;
+margin: 10px;
+width: 800px;
+}

@@ -1,0 +1,76 @@
+/* Sidebar ẩn hoàn toàn */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 200px;
+  background-color: #3f604e;
+  color: white;
+  overflow: hidden;
+  transform: translateX(-200px); /* ẩn hết */
+  transition: transform 0.3s ease;
+  z-index: 1200;
+}
+
+.sidebar.expanded {
+  transform: translateX(0); /* trượt ra */
+}
+
+/* Toggle button luôn lộ ra ngoài */
+.menu-toggle {
+  position: absolute; /* nằm ngoài sidebar */
+  top: 100px;
+  left: 0px;
+  background: #748681;
+  padding: 8px;
+  border-radius: 0 6px 6px 0;
+  z-index: 1100;
+  transform: translateX(0px); /* ẩn hết */
+}
+.menu-toggle.expanded {
+  transform: translateX(200px); /* trượt ra */
+}
+.menu-toggle:hover {
+  background: #1f2520;
+  transform: scale(1.05);
+}
+
+/* Menu items */
+.sidebar ul {
+  list-style: none;
+  margin: 70px 0 0 0;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 15px;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+}
+
+.sidebar li:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.account_setting {
+display: flex;
+flex-direction: column;
+justify-content: end;
+bottom: 10px;
+}
+
+@media (prefers-color-scheme: light) {
+  .sidebar {
+    background-color: rgb(131, 181, 252);
+  }
+  .menu-toggle {
+    color: aquamarine;
+    background-color: aliceblue;
+  }
+  .menu-toggle:hover {
+    color: aqua;
+    background-color: rgb(91, 173, 245);
+  }
+}

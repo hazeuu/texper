@@ -1,0 +1,24 @@
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: auto;
+  min-width: 100vw;
+}
+
+.layout-content {
+  flex: 1;
+  margin-left: 60px; /* bằng chiều rộng sidebar */
+  transition: margin-left 0.3s ease;
+  
+}
+
+/* Khi sidebar mở rộng */
+.sidebar.expanded ~ .layout-content {
+  margin-left: 220px;
+}
+
+/* Đặt sidebar nằm trên mọi phần tử */
+.sidebar {
+  z-index: 1000;
+}

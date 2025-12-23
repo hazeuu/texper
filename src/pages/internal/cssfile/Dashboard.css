@@ -1,0 +1,151 @@
+    .styling {
+        border: 1px;
+        grid-column: 3;
+        grid-row: 1;
+        padding-right: 25px;
+        max-width: 100%;
+        justify-self: right;
+        margin-top: 10px;
+        max-height: fit-content;
+    }
+    .styling h1{
+        margin: 0;
+        padding: 0;
+        line-height: 1;
+        text-align: right;
+    }
+    .calendar_today{
+        border: 3px solid red;
+        width: 20vw;
+        height: fit-content;
+        border-radius: 15px;
+        text-align: center;
+        padding: 10px;
+    }
+    .cases {
+        border: 3px solid #0044ff;
+        width: 20vw;
+        height: 30vh;
+        padding: 10px;
+        border-radius: 15px;
+        transform: scale(1);
+        transition: transform 0.3s ease;
+    }
+    .cases:hover {
+    transform: scale(1.05);    
+    transition: transform 0.3s ease;
+    }
+    .notes{
+        border: 3px solid #d2d2d2;
+        width: 20vw;
+        height: 17vh;
+        padding: 10px;
+        border-radius: 15px;
+          transform: scale(1);
+        transition: transform 0.3s ease;
+    }
+    .notes:hover {
+    transform: scale(1.05);    
+    transition: transform 0.3s ease;
+    }
+    .group1{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: fit-content;
+        margin-left: auto;
+    }
+    .group2{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: fit-content;
+    }
+    .desktop {
+        border: 3px solid #f56cd2;
+        width: 36vw;
+        height: 62vh;
+        padding: 10px;
+        border-radius: 15px;
+        transform: scale(1);
+        transition: transform 0.3s ease;
+    }
+    .desktop:hover {
+    transform: scale(1.02);    
+    transition: transform 0.3s ease;
+    }
+    h2{
+        margin: 0;
+        padding: 0;
+    }
+    .workspace_func_1 {
+        border: 3px solid #6cf583;
+        width: 20vw;
+        height: 40vh;
+        padding: 10px;
+        border-radius: 15px;
+           transform: scale(1);
+        transition: transform 0.3s ease;
+    }
+    .workspace_func_1:hover {
+    transform: scale(1.02);    
+    transition: transform 0.3s ease;
+    }
+    .workspace_func_2 {
+        border: 3px solid #c3f56c;
+        width: 20vw;
+        height: 18vh;
+        padding: 10px;
+        border-radius: 15px;
+           transform: scale(1);
+        transition: transform 0.3s ease;
+    }
+    .workspace_func_2:hover {
+    transform: scale(1.02);    
+    transition: transform 0.3s ease;
+    }
+    .dashboard_func_bord{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap:10px;
+        max-width: 100vw;
+        margin: auto;
+    }
+    .dashboard-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    left: -100%;
+    box-sizing: border-box;
+    transform: translateX(-100%);
+    animation: wipeRight 1.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    z-index: 1;
+    overflow-x: auto;
+    }
+    .dashboard-container h1{
+        position: relative;
+    animation: h1wipeRight 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    .dashboard-container h2{
+        position: relative;
+    animation: h1wipeRight 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    @keyframes wipeRight{
+    from {
+        left:-100%;
+
+    }
+    to {
+        left:0;
+        transform: translateX(0);
+    }
+    }
+    @keyframes h1wipeRight{
+    from {
+        left:-100%;
+
+    }
+    to {
+        left:0;
+    }
+    }

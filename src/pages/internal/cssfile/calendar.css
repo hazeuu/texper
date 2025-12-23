@@ -1,0 +1,27 @@
+@keyframes slideIn {
+  0% {
+    transform: translateY(-5%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+textarea {
+  height: 80px;
+  width: 400px ;                /* rộng hết khung chứa */
+  padding: 10px;              /* khoảng cách trong */
+  margin: 6px auto;              /* khoảng cách ngoài */
+  border: 2px solid #ccc;     /* viền xám */
+  border-radius: 8px;         /* bo góc */
+  font-size: 14px;
+  font-family: Lato;
+  transition: 0.3s;           /* tạo hiệu ứng mượt */
+  text-align: left;
+  resize: none;
+}
+.calendarize {
+  animation: slideIn 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+};

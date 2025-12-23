@@ -1,0 +1,98 @@
+.border_footer {
+  width: 100%;
+  position: relative;
+  justify-content: space-between;
+  box-sizing: border-box;
+  color: #cccfda;
+  background-color: #3e44eb96;
+  text-align: left;
+  overflow-x: auto;
+  display: flex;
+  border: 0;
+}
+.border_footer h4{
+  width: 300px;
+text-align: right;
+padding-right: 15px;
+}
+.footer_content {
+display: inline-block;
+width: 300px;
+text-align: left;
+padding-top: 20px;
+padding-left: 15px;
+text-decoration: none;
+color: white;
+}
+.footer_content:hover {
+  color: white;
+}
+.info{
+  width: 400px;
+text-align: center;
+}
+.header_sign {
+  border: 0;
+  background: #2281e0;
+  padding-right: 15px;
+  text-align: left;
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  margin: auto;
+  z-index: 1;
+  box-sizing: border-box;
+}
+.header_sign_branding {
+  display: inline-block;
+  border: 0;
+  max-width: 600px;
+  font-weight: 400;
+  font-size: x-large;
+  
+  text-align: center;
+  margin-left: 10px;
+}
+.header_sign_branding a{
+  color: white;
+  font-family:system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  font-size: x-large;
+  font-synthesis: none;
+  line-height: 1,5;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.header_sign_branding:hover{
+    color: white;
+}
+.header_sign button {
+  background: #ffffff; /* màu gradient */
+  border: none;
+  color: rgb(50, 88, 255);
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 200px;
+  margin-bottom: 5px;
+  margin-top: 15px;
+  margin-left: auto;
+}
+.button_position {
+  border: 0;
+  float: right;
+  margin-right: 40px;
+}
+@media (prefers-color-scheme: dark) {
+  .border_footer {
+    color: #797979;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  .header_sign {
+    background-color: rgba(89, 102, 126, 0.597);
+    }
+}
