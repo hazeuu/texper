@@ -1,15 +1,17 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
 import React from 'react'
-import ReactDOM from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
-import { AuthContext, AuthProvider } from './pages/internal/jsx/AuthContext.jsx'
+import { createRoot } from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom'
 
-ReactDOM,createRoot(document.getElementById('root')).render(
+import App from './App.jsx'
+import './index.css'
+import { AuthProvider } from './pages/internal/jsx/AuthContext.jsx'
+
+createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <AuthProvider>
-      <App />
-    </AuthProvider>
-  </React.StrictMode>,
-);
+    <BrowserRouter basename="/texper">
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </BrowserRouter>
+  </React.StrictMode>
+)
