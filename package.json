@@ -1,6 +1,7 @@
 {
   "name": "react",
   "private": true,
+  "homepage": "https://hazeuu.github.io/texper",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -40,4 +41,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC"
+  
 }
+
