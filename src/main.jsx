@@ -9,11 +9,11 @@ import { AuthProvider } from './pages/internal/jsx/AuthContext.jsx'
 createRoot(document.getElementById('root')).render(
   <HashRouter>
   
-    <BrowserRouter basename="/texper">
+    
       <AuthProvider>
         <App />
       </AuthProvider>
-    </BrowserRouter>
+    
   
   </HashRouter>
 )
