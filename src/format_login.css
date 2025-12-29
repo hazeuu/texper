@@ -170,11 +170,13 @@ button:active {
     margin: 50px auto;
     animation: slideDown 1.2s ease-out forwards;
 }
+
 .fill-border_forgot input[type="email"] {
   width: 350px;
   transform: scale(1.0);
   transition: transform 0.1s ease-out forwards;
 }
+
 .fill-border_forgot input[type="email"]:hover {
   width: 350px;
   transform: scale(1.05);
