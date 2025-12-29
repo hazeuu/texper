@@ -1,14 +1,27 @@
 import React from "react";
-import { Link, useNavigate} from "react-router-dom";
-import { useState } from "react";
-import "../footer_border.css"
-export default function Header(){
-  const [open, setOpen] = useState(false);
-    return (
+import { Link, useNavigate } from "react-router-dom";
+import "../footer_border.css";
+import { useAuth } from "../pages/internal/jsx/AuthContext";
+
+export default function Header() {
+  const navigate = useNavigate();
+  const { isLoggedIn, user, logout } = useAuth(); // lấy trạng thái login từ context
+
+  return (
     <div className="header_sign">
       <div className="header_sign_branding">
-        <Link to="/">HỆ THỐNG QUẢN LÝ BỆNH ÁN ĐIỆN TỬ <br></br>
-    BỆNH VIỆN PHỤ SẢN TRUNG ƯƠNG</Link></div>    
+        <Link to="/">
+          HỆ THỐNG QUẢN LÝ BỆNH ÁN ĐIỆN TỬ <br />
+          BỆNH VIỆN PHỤ SẢN TRUNG ƯƠNG
+        </Link>
+      </div>
+
+      {/* Nếu chưa login mới hiện nút */}
+      {!isLoggedIn && (
+        <button onClick={() => navigate("/Login")} className="button_position">
+          Đăng nhập
+        </button>
+      )}
     </div>
-    )
+  );
 }

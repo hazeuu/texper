@@ -1,5 +1,6 @@
 .border_footer {
   width: 100%;
+  max-height: fit-content;
   position: relative;
   justify-content: space-between;
   box-sizing: border-box;
@@ -9,6 +10,7 @@
   overflow-x: auto;
   display: flex;
   border: 0;
+  overflow-y: hidden;
 }
 .border_footer h4{
   width: 300px;
@@ -28,8 +30,8 @@ color: white;
   color: white;
 }
 .info{
-  width: 400px;
-text-align: center;
+  width: fit-content;
+  text-align: center;
 }
 .header_sign {
   border: 0;
@@ -53,7 +55,7 @@ text-align: center;
   text-align: center;
   margin-left: 10px;
 }
-.header_sign_branding a{
+.header_sign_branding a {
   color: white;
   font-family:system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-weight: 700;
@@ -63,8 +65,9 @@ text-align: center;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-decoration: none;
 }
-.header_sign_branding:hover{
+.header_sign_branding a:hover{
     color: white;
 }
 .header_sign button {

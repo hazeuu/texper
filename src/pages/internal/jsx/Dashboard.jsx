@@ -2,7 +2,11 @@ import React from "react";
 import "../cssfile/Dashboard.css";
 
 function Dashboard()
-{ return (
+{ 
+    
+
+    
+    return (
 <div className="dashboard-container">
     <div className="styling">
         <h1>Dashboard</h1>

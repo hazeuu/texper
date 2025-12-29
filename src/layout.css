@@ -10,7 +10,7 @@
   flex: 1;
   margin-left: 60px; /* bằng chiều rộng sidebar */
   transition: margin-left 0.3s ease;
-  
+  padding-bottom: 10px;
 }
 
 /* Khi sidebar mở rộng */

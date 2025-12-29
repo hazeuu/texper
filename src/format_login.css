@@ -100,14 +100,14 @@ padding: 15px;
   justify-content: center;
   padding: 4px;
 }
-input[type="name"],
-input[type="time"],
-input[type="text"], 
-input[type="email"], 
-input[type="password"],
-input[type="number"],
-select[type="object"],
-input[type="date"] {
+.form-box input[type="name"],
+.form-box input[type="time"],
+.form-box input[type="text"], 
+.form-box input[type="email"], 
+.form-box input[type="password"],
+.form-box input[type="number"],
+.form-box select[type="object"],
+.form-box input[type="date"] {
   width: 225px ;                /* rộng hết khung chứa */
   padding: 10px;              /* khoảng cách trong */
   margin: 6px auto;              /* khoảng cách ngoài */
@@ -118,13 +118,7 @@ input[type="date"] {
   transition: 0.3s;           /* tạo hiệu ứng mượt */
   text-align: left;
 }
-label {
-  position: absolute;
-  top: 14px;
-  pointer-events: none;
-  background: none;
-  transition: all 0.3s ease;
-}
+
 input[type="checkbox"] {
   width: 10px;       
   height: 10px;         /* rộng hết khung chứa */             /* khoảng cách trong */            /* khoảng cách ngoài */
@@ -137,7 +131,7 @@ input:focus {
   box-shadow: 0 0 5px #4c7caf;/* hiệu ứng sáng nhẹ */
   outline: none;              /* bỏ viền mặc định của trình duyệt */
 }
-button {
+ button {
   background: linear-gradient(135deg, #6396e3, #2281e0); /* màu gradient */
   border: none;
   color: white;
@@ -151,7 +145,6 @@ button {
   margin-bottom: 5px;
   margin-top: 15px;
 }
-
 button:hover {
   background: linear-gradient(135deg, #3529dc, #4928be); /* đổi màu khi hover */
   transform: scale(1.05);   /* hơi phóng to */
@@ -160,7 +153,7 @@ button:hover {
 button:active {
   transform: scale(0.98);   /* nhấn xuống thì nhỏ lại tí */
 }
-a {
+.fill-border_content a {
   color: lightblue;
   text-decoration: none;
   font-weight: bold;
@@ -191,4 +184,27 @@ a {
 .checkbox_layout{
 text-align: center;
 margin: auto;
+}
+
+.reset_password_layout{
+  max-width: 400px;
+  margin: auto;
+  gap: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.wrapping_reset_password_content {
+  border: 3px solid lightcyan;
+  margin: auto;
+  max-width: 500px;
+  padding: 15px;
+  border-radius: 15px;
+}
+.reset_password_layout input[type="password"]{
+  max-width: 390px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 0;
 }

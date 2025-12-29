@@ -11,6 +11,8 @@
   transform: translateX(-200px); /* ẩn hết */
   transition: transform 0.3s ease;
   z-index: 1200;
+  display: flex;
+  flex-direction: column;
 }
 
 .sidebar.expanded {
@@ -39,9 +41,13 @@
 /* Menu items */
 .sidebar ul {
   list-style: none;
-  margin: 70px 0 0 0;
+  margin: 70px 0 65px 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* chiếm toàn bộ chiều cao sidebar */
 }
+
 
 .sidebar li {
   padding: 15px;
@@ -53,7 +59,12 @@
 .sidebar li:hover {
   background: rgba(255, 255, 255, 0.1);
 }
-
+.logout_button{
+  margin-top: auto;
+  cursor: pointer;
+  pointer-events: auto;
+  color: lightblue;
+}
 .account_setting {
 display: flex;
 flex-direction: column;

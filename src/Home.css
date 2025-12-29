@@ -47,7 +47,7 @@ body {
   transition: background-image 1.2s ease;
   color: #1d166c;
   min-height: 100vh;
-  width: 100%;
+  width: fit-content;
 }
 @media (prefers-color-scheme: dark) {body{
   background-image: linear-gradient(135deg, #495851, #35353b, #4b5872);

@@ -11,8 +11,13 @@ function getback_passwords () {
    async function handleverify(e) {
     e.preventDefault();
 
-    // Gửi request giả lập đến backend
-    const response = await fakeverifyAPI(email);
+    // Gửi request đến backend
+    const response = await fetch("http://localhost:3000/forgot-password", {
+      method: "POST",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify({email})
+    });
+
      if (!submitted) {
     setSubmitted(true);
     return;
@@ -22,6 +27,13 @@ function getback_passwords () {
       setSuccess ("");
       return;
     }
+      const data = await response.json();
+
+  if (!response.ok) {
+    setError(data.message || "Không thể gửi yêu cầu. Vui lòng thử lại.");
+    setSuccess("");
+    return;
+  }
     setError("");
     setSuccess ("Yêu cầu khôi phục mật khẩu đã được gửi. Vui lòng kiểm tra Email");
     setSubmitted(false);

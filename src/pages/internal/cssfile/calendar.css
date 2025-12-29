@@ -8,12 +8,38 @@
     opacity: 1;
   }
 }
-
-textarea {
+.no{
+  width: 700px;
+  display: flex;
+  height: 40px;
+  align-items: center;
+  padding-top: 10px;
+}
+.stlying_calendar{
+  display: flex;
+  align-items: flex-start;
+  width: fit-content;
+  gap: 10px;
+}
+.no input[type="date"],
+.no input[type="time"] {
+  width: 150px;
+  padding: 10px;
+  margin-left: auto;
+  font-family: lato;
+  border-radius: 15px;
+}
+.no:nth-of-type(3){
+height: 120px;
+}
+.no:nth-of-type(3) h3{
+margin-bottom: auto;
+margin-top: 5px;
+}
+.no textarea {
   height: 80px;
   width: 400px ;                /* rộng hết khung chứa */
-  padding: 10px;              /* khoảng cách trong */
-  margin: 6px auto;              /* khoảng cách ngoài */
+  padding: 10px;              /* khoảng cách trong */              /* khoảng cách ngoài */
   border: 2px solid #ccc;     /* viền xám */
   border-radius: 8px;         /* bo góc */
   font-size: 14px;
@@ -21,7 +47,84 @@ textarea {
   transition: 0.3s;           /* tạo hiệu ứng mượt */
   text-align: left;
   resize: none;
+  margin-left: auto;
+}
+.splitter_calendar{
+  display: flex;
+  flex-direction: column;
+}
+.calendar_button{
+  display: flex;
+  flex-direction: column;
 }
 .calendarize {
   animation: slideIn 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  text-align: left;
+  max-width: 700px;
+  display: flex;
 };
+
+.appointment-container {
+  width: 900px;
+  padding: 16px;
+  padding-bottom: 10px;
+}
+
+.filter-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+  align-items: center;
+  height: 60px;
+}
+
+.filter-row input {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  max-height: 60px;
+}
+
+.filter-row button{
+  padding-top: auto;
+}
+.appointment-table {
+  width: 80%;
+  border-collapse: collapse;
+}
+
+.appointment-table th,
+.appointment-table td {
+  border: 1px solid #48b8f0;
+  padding: 8px;
+}
+
+.appointment-table thead {
+  background: #33efc6;
+}
+
+.done-btn {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.done-btn:disabled {
+  background: #aaa;
+  color: #fff;
+  cursor: not-allowed;
+}
+
+.empty-row {
+  text-align: center;
+  color: #777;
+  padding: 16px;
+}
+
+.actions-cell button{
+  width: 120px;
+  height: 40px;
+  align-items: center;
+  margin: 2px;
+}

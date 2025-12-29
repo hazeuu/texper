@@ -37,9 +37,25 @@ body {
 
 .fill-border_signup{
   max-width: 580px;
-  margin: 100px auto;
+  margin: 50px auto;
   opacity: 0;
   animation: slideDown 0.8s ease-out forwards;
+}
+
+.signup-form select{
+  width: 102%;
+  padding: 10px;
+  margin-top: 6px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: Lato, sans-serif;
+  transition: 0.8s;
+  display: block;           /* giống input */
+  box-sizing: border-box;   /* tính cả viền & padding trong width */
+  appearance: none;         /* bỏ style mặc định (mũi tên) */
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 .signup-container h1 {
   color: #e3e9ff;
@@ -48,30 +64,26 @@ body {
 
 /* Form chính */
 .signup-form {
+  max-width: 100%;
   gap: 3px;
   text-align: left;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 .signup-form button {
-margin: 0 auto;
+align-items: center;
 }
 
-/* Label */
-.signup-form label {
-  font-size: 15px;
-  font-weight: 500;
-  margin-top: 10px;
-  color: #e3e9ff;
-}
 
 /* Ô nhập liệu */
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="date"],
-input[type="tel"] {
-  width: 100%;
+
+.signup-form input[type="text"],
+.signup-form input[type="email"],
+.signup-form input[type="password"],
+.signup-form input[type="date"],
+.signup-form input[type="tel"] {
+  width: 96%;
   padding: 10px;
   margin-top: 6px;
   border: 2px solid #ccc;
@@ -79,7 +91,6 @@ input[type="tel"] {
   font-size: 14px;
   font-family: Lato, sans-serif;
   transition: 0.8s;
-  align-items: center;
 }
 
 input:focus {

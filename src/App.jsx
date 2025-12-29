@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Login from "./pages/Login";
@@ -12,31 +12,36 @@ import Reminder from "./pages/internal/jsx/reminder";
 import Account from "./pages/internal/jsx/account";
 import ProtectedRoute from "./ProtectedRoute";
 import QandA from "./pages/QandA";
+import Reset_password from "./pages/internal/jsx/reset_password";
+import Admin_register from "./pages/internal/jsx/admin_register";
+import ReminderPage from "./pages/internal/jsx/ReminderPage";
+import './App.css';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        {/* Public routes */}
-        <Route path="/" element={<Layout_home><Home /></Layout_home>} />
-        <Route path="/About" element={<Layout><About /></Layout>} />
-        <Route path="/Login" element={<Layout_home><Login /></Layout_home>} />
-        <Route path="/Signup" element={<Layout><Signup /></Layout>} />
-        <Route path="/Forgot_passwords" element={<Layout><Forgot_passwords /></Layout>} />
+    <Routes>
+      {/* Public routes */}
+      <Route path="/" element={<Layout_home><Home /></Layout_home>} />
+      <Route path="/About" element={<Layout><About /></Layout>} />
+      <Route path="/Login" element={<Layout><Login /></Layout>} />
+      <Route path="/Signup" element={<Layout><Signup /></Layout>} />
+      <Route path="/Forgot_passwords" element={<Layout><Forgot_passwords /></Layout>} />
+      <Route path="/reset_password" element={<Layout><Reset_password /></Layout>} />
+      <Route path="/QandA" element={<Layout_home><QandA /></Layout_home>} />
+      <Route path="/admin_register" element={<Layout_home><Admin_register /></Layout_home>} />
+      {/* Protected routes */}
+      <Route element={<ProtectedRoute />}>
+        <Route path="/Dashboard" element={<Layout_home><Dashboard /></Layout_home>} />
+        <Route path="/calendar" element={<Layout_home><Calendar /></Layout_home>} />
+        <Route path="/reminder" element={<Layout_home><ReminderPage /></Layout_home>} />
+        <Route path="/account" element={<Layout_home><Account /></Layout_home>} />
+        
+        
+      </Route>
 
-        {/* Protected routes */}
-        <Route element={<ProtectedRoute />}>
-          <Route path="/Dashboard" element={<Layout_home><Dashboard /></Layout_home>} />
-          <Route path="/calendar" element={<Layout_home><Calendar /></Layout_home>} />
-          <Route path="/reminder" element={<Layout_home><Reminder /></Layout_home>} />
-          <Route path="/account" element={<Layout_home><Account /></Layout_home>} />
-          <Route path="/QandA" element={<Layout_home><QandA /></Layout_home>} />
-        </Route>
-
-        {/* Fallback 404 */}
-        <Route path="*" element={<div>404 Not Found</div>} />
-      </Routes>
-    </BrowserRouter>
+      {/* Fallback 404 */}
+      <Route path="*" element={<div>404 Not Found</div>} />
+    </Routes>
   );
 }
 

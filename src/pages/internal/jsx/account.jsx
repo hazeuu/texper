@@ -1,45 +1,68 @@
-import { Link } from "react-router-dom";
-import React from "react";
-import { useState } from "react";
-import "../cssfile/account.css"
-function Account_management()
-{
-    return(
-        <div className="fill-border_group">
-        <h1>Tài khoản</h1>
-    <div className="account_form">
-    <button>Chỉnh sửa</button>
-    <div className="input-box">
-  <label>Họ và tên</label>
-  <input type="text" readOnly/>
-</div>
- <div className="input-box">
-  <label>Ngày sinh</label>
-  <input type="text" readOnly/>
-</div>
- <div className="input-box">
-  <label>Email</label>
-  <input type="text" readOnly/>
-</div>
- <div className="input-box">
-  <label>Số điện thoại</label>
-  <input type="text" readOnly/>
-</div>
- <div className="input-box">
-  <label>Nhập mật khẩu hiện tại</label>
-  <input type="text" readOnly/>
-</div>
- <div className="input-box">
-  <label>Nhập mật khẩu mới</label>
-  <input type="text" readOnly/>
-</div>
- <div className="input-box">
-  <label>Xác nhận mật khẩu mới</label>
-  <input type="text" readOnly/>
-</div>
-</div>
-        <button>Đăng xuất</button>
+import React, { useState, useEffect } from "react";
+import { useAuth } from "../jsx/AuthContext";
+import "../cssfile/account.css";
+
+function Account_management() {
+  const { user, loading } = useAuth();
+  const [userInfo, setUserInfo] = useState(null);
+
+  // Khi auth chưa load xong
+  if (loading) return <div>Loading auth...</div>;
+  if (!user) return <div>Chưa đăng nhập</div>;
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        let userId;
+        if (user.role === "doctor") userId = user.doctor_id;
+        else if (user.role === "staff") userId = user.staff_id;
+        else if (user.role === "patient") userId = user.patient_id;
+        else return;
+
+        const res = await fetch(`http://localhost:3000/api/account/${user.role}/${userId}`);
+        if (!res.ok) throw new Error("Lỗi kết nối server");
+        const data = await res.json();
+        setUserInfo(data);
+      } catch (err) {
+        console.error("Lỗi fetch user info:", err);
+      }
+    };
+
+    fetchUserInfo();
+  }, [user]);
+
+  if (!userInfo) return <div>Loading user data...</div>;
+
+  return (
+    <div className="fill-border_group">
+      <h1>Tài khoản</h1>
+      <div className="account_form">
+        <button>Chỉnh sửa</button>
+
+        <div className="input-box">
+          <label>Họ và tên</label>
+          <input type="text" value={userInfo.full_name} readOnly />
         </div>
-    )
+
+        <div className="input-box">
+          <label>Ngày sinh (MM/DD/YYYY)</label>
+          <input type="text" value={new Date(userInfo.date_of_birth).toLocaleDateString()} readOnly />
+        </div>
+
+        <div className="input-box">
+          <label>Email</label>
+          <input type="text" value={userInfo.email} readOnly />
+        </div>
+
+        <div className="input-box">
+          <label>Số điện thoại</label>
+          <input type="text" value={userInfo.phone} readOnly />
+        </div>
+      </div>
+
+      <button>Đăng xuất</button>
+    </div>
+  );
 }
+
 export default Account_management;

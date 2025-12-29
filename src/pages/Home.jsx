@@ -7,7 +7,6 @@ export default function Home(){
         <div className="format_Home">
             <h1>BỆNH VIỆN PHỤ SẢN TRUNG ƯƠNG</h1>
             <h2>Trao nhân ái, trí tuệ vì hạnh phúc, tương lai</h2>
-            <button onClick={() => navigate("/Login")} >Đăng nhập </button>
         </div>
     )
 }

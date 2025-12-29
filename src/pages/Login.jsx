@@ -1,13 +1,22 @@
-import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "./internal/jsx/AuthContext";
 import "../format_login.css";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { login } = useContext(AuthContext);
+  const { isLoggedIn, login } = useContext(AuthContext);
 
+  const navigate = useNavigate();
+
+  // Nếu đã login rồi thì không cho vào trang Login
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/Dashboard", { replace: true });
+    }
+  }, [isLoggedIn, navigate]);
+  
   async function handleLogin(e) {
     e.preventDefault();
 
@@ -25,11 +34,20 @@ function Login() {
         return;
       }
 
+ // Tạo object user chuẩn với id riêng theo role
+    const userWithId = { ...data.user };
+    if (userWithId.role === "doctor") userWithId.doctor_id = data.user.id;
+    else if (userWithId.role === "staff") userWithId.staff_id = data.user.id;
+    else if (userWithId.role === "patient") userWithId.patient_id = data.user.id;
+
+    login(data.token, userWithId); // set context
+
       // Lưu token
       localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(userWithId));
 
       // Chuyển trang
-      window.location.href = "/dashboard";
+       navigate("/dashboard", { replace: true });
     } catch (err) {
       alert("Không kết nối được đến server!");
       console.error(err);
