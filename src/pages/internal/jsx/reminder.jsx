@@ -86,7 +86,7 @@ const handleSubmit = async (e) => {
 
       // Gửi dữ liệu lên backend
       const response = await fetch(
-        "http://localhost:3000/api/patients-appointments",
+        "https://texper.onrender.com/api/patients-appointments",
         {
             method: "POST",
             headers: {"Content-Type": "application/json"},
