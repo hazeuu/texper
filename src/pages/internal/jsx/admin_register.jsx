@@ -39,7 +39,7 @@ function Admin_register() {
 
       try {
         const roleForDB = roleMap[choice]; 
-        const response = await fetch("http://localhost:3000/staff/register", {
+        const response = await fetch("https://texper.onrender.com/staff/register", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ username, password, name, dob, email, phone, sex, license_number: formData.extra1,

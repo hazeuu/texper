@@ -65,7 +65,7 @@ function Reset_password() {
     }
 
     try {
-      const response = await fetch("http://localhost:3000/reset-password", {
+      const response = await fetch("https://texper.onrender.com/reset-password", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

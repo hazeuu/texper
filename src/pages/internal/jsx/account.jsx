@@ -25,7 +25,7 @@ function Account_management() {
         else if (roleGroup === "patient") userId = user.patient_id;
         else return;
 
-        const res = await fetch(`http://localhost:3000/api/account/${roleGroup}/${userId}`);
+        const res = await fetch(`https://texper.onrender.com/api/account/${roleGroup}/${userId}`);
         if (!res.ok) throw new Error("Lỗi kết nối server");
         const data = await res.json();
         setUserInfo(data);

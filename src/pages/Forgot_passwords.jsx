@@ -12,7 +12,7 @@ function getback_passwords () {
     e.preventDefault();
 
     // Gửi request đến backend
-    const response = await fetch("http://localhost:3000/forgot-password", {
+    const response = await fetch("https://texper.onrender.com/forgot-password", {
       method: "POST",
       headers: {"Content-Type":"application/json"},
       body: JSON.stringify({email})

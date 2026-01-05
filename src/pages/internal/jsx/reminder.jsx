@@ -24,7 +24,7 @@ function Remindering({ role }) {
       return;
     }
 
-    const response = await fetch("http://localhost:3000/api/patients-appointments", {
+    const response = await fetch("https://texper.onrender.com/api/patients-appointments", {
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${token}`,
