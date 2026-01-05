@@ -14,7 +14,7 @@ const app = express();
 
 // CORS 
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: "https://hazeuu.github.io",
   credentials: true,
   methods: ["GET","POST","PUT","DELETE","OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"]
