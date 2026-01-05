@@ -44,6 +44,7 @@ const pool = mysql.createPool({
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
+  connectTimeout: 100,
   port: process.env.DB_PORT || 3306, // 3306 mặc định
   ssl: {
     ca: process.env.DB_SSL_CA       // Nội dung server-ca.pem
