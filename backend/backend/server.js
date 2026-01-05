@@ -14,7 +14,7 @@ const app = express();
 
 // CORS 
 app.use(cors({
-  origin: process.env.FRONTEND_URL,
+  origin: "http://localhost:5173",
   credentials: true,
   methods: ["GET","POST","PUT","DELETE","OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"]
@@ -44,6 +44,10 @@ const pool = mysql.createPool({
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
+  port: process.env.DB_PORT || 3306, // 3306 mặc định
+  ssl: {
+    ca: process.env.DB_SSL_CA       // Nội dung server-ca.pem
+  }
 });
 
 // Nodemailer
@@ -58,6 +62,27 @@ transporter.verify((err, success) => {
   if (err) console.log("Nodemailer lỗi:", err);
   else console.log("Nodemailer sẵn sàng gửi email");
 });
+
+//-------------VERIFY TOKEN-------------------------
+function verifyToken(req, res, next) {
+  const header = req.headers.authorization;
+
+  if (!header || !header.startsWith("Bearer ")) {
+    return res.status(401).json({ error: "No token provided" });
+  }
+
+  const token = header.split(" ")[1];
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    // Lưu user vào req để route phía sau dùng
+    req.user = decoded;
+    next();
+  } catch (err) {
+    return res.status(401).json({ error: "Invalid or expired token" });
+  }
+}
 
 // ---------------------- REGISTER ----------------------
 app.post("/register", async (req, res) => {
@@ -103,7 +128,6 @@ app.post("/login", async (req, res) => {
     if (rows.length === 0) return res.status(400).json({ error: "Sai tài khoản hoặc mật khẩu" });
 
     const user = rows[0];
-    if (!user.password_hash) return res.status(500).json({ error: "Sai tài khoản hoặc mật khẩu" });
 
     const match = await bcrypt.compare(password, user.password_hash);
     if (!match) return res.status(400).json({ error: "Sai tài khoản hoặc mật khẩu" });
@@ -114,21 +138,36 @@ app.post("/login", async (req, res) => {
     else if (user.role === "patient") userId = user.patient_id;
 
     const token = jwt.sign(
-      { id: userId, username: user.username, role: user.role },
+      {
+        id: userId,
+        username: user.username,
+        role: user.role,
+        patient_id: user.patient_id ?? null,
+        doctor_id: user.doctor_id ?? null,
+        staff_id: user.staff_id ?? null,
+      },
       JWT_SECRET,
-      { expiresIn: "360s" }
+      { expiresIn: "1d" }
     );
 
     res.json({
       message: "Login thành công",
       token,
-      user: { id: userId, username: user.username, role: user.role, doctor_id: user.doctor_id, staff_id: user.staff_id, patient_id: user.patient_id }
+      user: {
+        id: userId,
+        username: user.username,
+        role: user.role,
+        doctor_id: user.doctor_id,
+        staff_id: user.staff_id,
+        patient_id: user.patient_id,
+      },
     });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ error: "Internal server error" });
   }
 });
+
 
 // ---------------------- GET PATIENT BY NAME ----------------------
 app.get("/patients", async (req, res) => {
@@ -173,8 +212,24 @@ app.post("/forgot-password", async (req, res) => {
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: email,
-      subject: "Reset mật khẩu",
-      html: `<p>Click vào link: <a href="${resetLink}">Đặt lại mật khẩu</a></p>`,
+      subject: "Yêu cầu đặt lại mật khẩu Hệ thống QLBAĐT Bệnh viện Phụ sản Trung ương",
+      html: `<p>Xin chào, <br></br>
+
+Chúng tôi đã nhận được yêu cầu đặt lại mật khẩu cho tài khoản của bạn trên hệ thống của chúng tôi. <br></br>
+
+Nếu bạn không gửi yêu cầu này, vui lòng bỏ qua email — tài khoản của bạn sẽ không bị thay đổi. <br></br>
+
+Để tạo mật khẩu mới, vui lòng nhấp vào liên kết bên dưới và làm theo hướng dẫn: <br></br>
+
+<a href="${resetLink}">Đặt lại mật khẩu</a> <br></br> 
+
+Lưu ý: liên kết này chỉ có hiệu lực trong một khoảng thời gian giới hạn vì lý do bảo mật. <br></br>
+
+Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi. Rất mong bạn có trải nghiệm tốt. <br></br> <br></br>
+
+Trân trọng,<br></br>
+Đội ngũ Hỗ trợ <br></br>
+</p>`,
     });
 
     res.json({ message: "OK" });
@@ -246,36 +301,70 @@ app.post("/reset-password/validate", async (req, res) => {
 
 // ---------------------- APPOINTMENTS ----------------------
 app.post("/api/patients-appointments", async (req, res) => {
-  const { patient_id, appointment_datetime, symptom_text } = req.body;
-  if (!patient_id || !appointment_datetime || !symptom_text) return res.status(400).json({ error: "Missing required fields." });
+  const { appointment_datetime, symptom_text } = req.body;
+
+  const patient_id = req.user.patient_id;   // lấy từ token
+
+  if (!appointment_datetime || !symptom_text)
+    return res.status(400).json({ error: "Missing required fields." });
 
   try {
     const [result] = await pool.query(
-      "INSERT INTO patients_appointing (patient_id, appointment_datetime, symptom_text) VALUES (?, ?, ?)",
+      `
+      INSERT INTO patients_appointing (patient_id, appointment_datetime, symptom_text)
+      VALUES (?, ?, ?)
+      `,
       [patient_id, appointment_datetime, symptom_text]
     );
-    res.status(201).json({ message: "Appointment created successfully", appointment_id: result.insertId });
+
+    res
+      .status(201)
+      .json({ message: "Appointment created successfully", appointment_id: result.insertId });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Internal server error." });
   }
 });
 
-app.get("/api/patients-appointments", async (req, res) => {
+
+app.get("/api/patients-appointments", verifyToken, async (req, res) => {
   try {
-    const [rows] = await pool.query(`
-      SELECT pa.appointment_id, pa.appointment_datetime, pa.symptom_text, pa.status,
-             p.full_name AS patientName, p.email AS patientEmail, p.phone AS patientPhone
-      FROM patients_appointing pa
-      LEFT JOIN patients p ON pa.patient_id = p.patient_id
-      ORDER BY pa.appointment_datetime ASC
-    `);
+    let [rows] = [[]];
+
+    if (req.user.role === "patient") {
+      const pid = req.user.id; // đảm bảo token decode có id
+      [rows] = await pool.query(
+        `SELECT pa.appointment_id, pa.appointment_datetime, pa.symptom_text, pa.status,
+                p.full_name AS patientName, p.phone AS patientPhone, p.email AS patientEmail,
+                COALESCE(d.full_name, 'Chưa phân công') AS doctor
+         FROM patients_appointing pa
+         LEFT JOIN patients p ON pa.patient_id = p.patient_id
+         LEFT JOIN doctors d ON pa.doctor_id = d.doctor_id
+         WHERE pa.patient_id = ?
+         ORDER BY pa.appointment_datetime ASC`,
+        [pid]
+      );
+    } else if (req.user.role === "doctor" || req.user.role === "nurse") {
+      [rows] = await pool.query(
+        `SELECT pa.appointment_id, pa.appointment_datetime, pa.symptom_text, pa.status,
+                p.full_name AS patientName, p.phone AS patientPhone, p.email AS patientEmail,
+                COALESCE(d.full_name, 'Chưa phân công') AS doctor
+         FROM patients_appointing pa
+         LEFT JOIN patients p ON pa.patient_id = p.patient_id
+         LEFT JOIN doctors d ON pa.doctor_id = d.doctor_id
+         ORDER BY pa.appointment_datetime ASC`
+      );
+    } else {
+      return res.status(403).json({ error: "Unauthorized role" });
+    }
+
     res.json(rows);
   } catch (err) {
-    console.error(err);
+    console.error("Lỗi fetchAppointments:", err);
     res.status(500).json({ error: "Internal server error." });
   }
 });
+
 
 // ---------------------- REGISTER STAFF ----------------------
 app.post("/staff/register", async (req, res) => {

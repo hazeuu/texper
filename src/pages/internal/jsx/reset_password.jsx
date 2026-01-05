@@ -19,7 +19,7 @@ function Reset_password() {
     }
 
     try {
-      const res = await fetch("https://texper.onrender.com/reset-password/validate", {
+      const res = await fetch("http://localhost:3000/reset-password/validate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token, email }),
@@ -102,11 +102,11 @@ function Reset_password() {
       <div className="wrapping_reset_password_content">
         <div className="reset_password_layout">
 
-          {/* ⚠️ KHU VỰC THÔNG BÁO */}
+          {/*  KHU VỰC THÔNG BÁO */}
           {error && <p style={{ color: "red" }}>{error}</p>}
           {success && <p style={{ color: "green" }}>{success}</p>}
 
-          <form onSubmit={handleverify}>
+          <form className="reset_password_layout" onSubmit={handleverify}>
             Vui lòng nhập mật khẩu mới:
             <input
               type="password"

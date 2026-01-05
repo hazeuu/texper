@@ -7,13 +7,11 @@ import './index.css'
 import { AuthProvider } from './pages/internal/jsx/AuthContext.jsx'
 
 createRoot(document.getElementById('root')).render(
-  <HashRouter>
-  
-    
+  <React.StrictMode>
+    <BrowserRouter basename="/texper">
       <AuthProvider>
         <App />
       </AuthProvider>
-    
-  
-  </HashRouter>
+    </BrowserRouter>
+  </React.StrictMode>
 )

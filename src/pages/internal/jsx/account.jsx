@@ -10,16 +10,22 @@ function Account_management() {
   if (loading) return <div>Loading auth...</div>;
   if (!user) return <div>Chưa đăng nhập</div>;
 
+  const roleGroup =
+  ["nurse", "receptionist"].includes(user.role)
+    ? "staff"
+    : user.role;
+
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
+        
         let userId;
-        if (user.role === "doctor") userId = user.doctor_id;
-        else if (user.role === "staff") userId = user.staff_id;
-        else if (user.role === "patient") userId = user.patient_id;
+        if (roleGroup === "doctor") userId = user.doctor_id;
+        else if (roleGroup === "staff") userId = user.staff_id;
+        else if (roleGroup === "patient") userId = user.patient_id;
         else return;
 
-        const res = await fetch(`https://texper.onrender.com/api/account/${user.role}/${userId}`);
+        const res = await fetch(`http://localhost:3000/api/account/${roleGroup}/${userId}`);
         if (!res.ok) throw new Error("Lỗi kết nối server");
         const data = await res.json();
         setUserInfo(data);
@@ -37,7 +43,6 @@ function Account_management() {
     <div className="fill-border_group">
       <h1>Tài khoản</h1>
       <div className="account_form">
-        <button>Chỉnh sửa</button>
 
         <div className="input-box">
           <label>Họ và tên</label>
@@ -60,7 +65,7 @@ function Account_management() {
         </div>
       </div>
 
-      <button>Đăng xuất</button>
+      <button>Đổi mật khẩu</button>
     </div>
   );
 }

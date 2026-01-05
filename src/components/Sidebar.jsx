@@ -35,6 +35,14 @@ export default function Sidebar() {
       { path: "/Account", label: "Tài khoản", isAccount: true },
       { path: "/about", label: "Giới thiệu" },
     ],
+    receptionist: [
+      { path: "/", label: "Trang chủ" },
+      { path: "/Dashboard", label: "Dashboard" },
+      { path: "/Reminder", label: "Đặt lịch hẹn" },
+      { path: "/QandA", label: "Giải đáp y học" },
+      { path: "/Account", label: "Tài khoản", isAccount: true },
+      { path: "/about", label: "Giới thiệu" },
+    ],
     patient: [
       { path: "/", label: "Trang chủ" },
       { path: "/Dashboard", label: "Dashboard" },

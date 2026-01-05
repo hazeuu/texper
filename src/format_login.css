@@ -175,11 +175,19 @@ button:active {
   width: 350px;
   transform: scale(1.0);
   transition: transform 0.1s ease-out forwards;
+  padding: 10px;              /* khoảng cách trong */
+  margin: 6px auto;              /* khoảng cách ngoài */
+  border: 2px solid #ccc;     /* viền xám */
+  border-radius: 8px;         /* bo góc */
+  font-size: 14px;
+  font-family: Lato;
+  transition: 0.3s;           /* tạo hiệu ứng mượt */
+  text-align: left;
 }
 
 .fill-border_forgot input[type="email"]:hover {
   width: 350px;
-  transform: scale(1.05);
+  transform: scale(1.01);
   transition: transform 0.1s ease-out forwards;
 }
 
@@ -194,7 +202,7 @@ margin: auto;
   gap: 5px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  margin-left: auto;
 }
 .wrapping_reset_password_content {
   border: 3px solid lightcyan;
@@ -209,4 +217,8 @@ margin: auto;
   padding-bottom: 10px;
   padding-left: 10px;
   padding-right: 0;
+  border-radius: 10px;
+}
+.reset_password_layout button{
+  margin: auto;
 }

@@ -17,27 +17,49 @@ function Remindering({ role }) {
 
   useEffect(() => {
   const fetchAppointments = async () => {
-    try {
-      const response = await fetch("http://localhost:3000/api/patients-appointments");
-      const data = await response.json();
-
-      // Chuyển đổi data từ backend sang format frontend đang dùng
-      const mapped = data.map(item => ({
-        id: item.appointment_id,
-        patientName: item.patientName || "Bệnh nhân",
-        phone: item.phone || "",
-        email: item.email || "",
-        time: item.appointment_datetime,
-        tags: item.symptom_text,
-        doctor: item.doctor || "Đang chờ phân công",
-        status: item.status || "pending",
-      }));
-
-      setAppointments(mapped);
-    } catch (err) {
-      console.error("Lỗi lấy lịch hẹn:", err);
+  try {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("No token found");
+      return;
     }
-  };
+
+    const response = await fetch("http://localhost:3000/api/patients-appointments", {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      const err = await response.json();
+      console.error("API error", err);
+      return;
+    }
+
+    const data = await response.json();
+
+    if (!Array.isArray(data)) {
+      console.error("Unexpected response", data);
+      return;
+    }
+
+    const mapped = data.map(item => ({
+      id: item.appointment_id,
+      patientName: item.patientName || "Bệnh nhân",
+      phone: item.patientPhone || "",
+      email: item.patientEmail || "",
+      time: new Date(item.appointment_datetime).toLocaleString("vi-VN", { hour12: false }),
+      tags: item.symptom_text,
+      doctor: item.doctor || "Đang chờ phân công",
+      status: item.status || "pending",
+    }));
+
+    setAppointments(mapped);
+  } catch (err) {
+    console.error("Lỗi lấy lịch hẹn:", err);
+  }
+};
 
   fetchAppointments();
 }, []);
@@ -86,7 +108,7 @@ const handleSubmit = async (e) => {
 
       // Gửi dữ liệu lên backend
       const response = await fetch(
-        "https://texper.onrender.com/api/patients-appointments",
+        "http://localhost:3000/api/patients-appointments",
         {
             method: "POST",
             headers: {"Content-Type": "application/json"},

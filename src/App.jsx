@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Login from "./pages/Login";
@@ -15,14 +15,17 @@ import QandA from "./pages/QandA";
 import Reset_password from "./pages/internal/jsx/reset_password";
 import Admin_register from "./pages/internal/jsx/admin_register";
 import ReminderPage from "./pages/internal/jsx/ReminderPage";
+import Navbar from "./components/navbar";
 import './App.css';
 
 function App() {
+  const location= useLocation();
+  const isHome= location.pathname === "/";
   return (
     <Routes>
       {/* Public routes */}
       <Route path="/" element={<Layout_home><Home /></Layout_home>} />
-      <Route path="/About" element={<Layout><About /></Layout>} />
+      <Route path="/About" element={<Layout_home><About /></Layout_home>} />
       <Route path="/Login" element={<Layout><Login /></Layout>} />
       <Route path="/Signup" element={<Layout><Signup /></Layout>} />
       <Route path="/Forgot_passwords" element={<Layout><Forgot_passwords /></Layout>} />
