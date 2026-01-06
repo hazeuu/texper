@@ -5,6 +5,20 @@
     <link rel="icon" type="image/svg+xml" href="/texper/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Texper</title>
+
+    <!-- SCRIPT KHÔI PHỤC ROUTE CHO SPA GITHUB PAGES -->
+    <script>
+      (function () {
+        // Lấy URL route lưu từ sessionStorage (nếu có)
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+
+        // Nếu có route cũ và khác hiện tại, replaceState để React Router render đúng
+        if (redirect && redirect !== location.pathname + location.search + location.hash) {
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
     <script type="module" crossorigin src="/texper/assets/index-BsHLqlOb.js"></script>
     <link rel="stylesheet" crossorigin href="/texper/assets/index-CiZGMnZW.css">
   </head>
