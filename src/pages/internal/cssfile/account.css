@@ -94,7 +94,7 @@ margin-left: auto;
     color: white;
     transition: background-image 1.2s ease;
   }
-  input-box label{
+  .input-box label{
     background-color: #d1dae1;
   }
 }
