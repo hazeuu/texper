@@ -342,7 +342,7 @@ app.get("/api/patients-appointments", verifyToken, async (req, res) => {
          ORDER BY pa.appointment_datetime ASC`,
         [pid]
       );
-    } else if (req.user.role === "doctor" || req.user.role === "nurse") {
+    } else if (req.user.role === "doctor" || req.user.role === "nurse" || req.user.role === "receptionist") {
       [rows] = await pool.query(
         `SELECT pa.appointment_id, pa.appointment_datetime, pa.symptom_text, pa.status,
                 p.full_name AS patientName, p.phone AS patientPhone, p.email AS patientEmail,
