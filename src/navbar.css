@@ -19,7 +19,7 @@
   margin: 0 auto;
   justify-content: center;
   align-items: center;
-  background-image: linear-gradient( 135deg, #5f688d, #6a90ae, #3e3ebd);
+  background-image: linear-gradient( 135deg, #424242, #000000, #2d7760);
   background-size: 400% 400%;
   animation: gradientFlow 15s ease infinite;
   transition: background-image 1.2s ease;
@@ -39,4 +39,13 @@
 .nav-list a:hover {
   transform: scale(1.1);
   color: white;
+}
+
+@media (prefers-color-scheme: dark) {
+  .nav-list {
+    background-image: linear-gradient( 135deg, #5f688d, #6a90ae, #3e3ebd);
+    background-attachment: fixed;
+    color: white;
+    transition: background-image 1.2s ease;
+  }
 }

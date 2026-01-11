@@ -15,7 +15,7 @@ const articles = [
     {
         id: 3,
         title: "Dấu hiệu nhận biết và cách phòng ngừa bệnh tiểu đường thai kỳ",
-        image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800&h=600&fit=crop"
+        image: "https://www.docosan.com/blog/wp-content/uploads/2025/01/dau-hieu-dai-thao-duong-thai-ky-12.jpg"
     },
     {
         id: 4,

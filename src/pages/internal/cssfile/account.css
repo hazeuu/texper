@@ -61,7 +61,7 @@
     height: 300px;
     margin: auto;
     border-radius: 15px;
-    background-color: #2f3234;
+    background-color: #d1dae1;
     padding: 40px;
     padding-left: 0px;
     padding-right: 20px;
@@ -86,4 +86,15 @@ margin-left: auto;
 }
 .account_form button:hover{
     transform: none;
+}
+
+@media (prefers-color-scheme: dark) {
+ .account_form {
+    background-color: #2f3234;
+    color: white;
+    transition: background-image 1.2s ease;
+  }
+  input-box label{
+    background-color: #d1dae1;
+  }
 }

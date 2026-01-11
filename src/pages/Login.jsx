@@ -21,7 +21,7 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await fetch("https://texper.onrender.com/login", {
+      const response = await fetch("https://texper.onrender.com/login"|| "http://localhost:5173/texper/Login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
