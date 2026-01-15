@@ -32,15 +32,13 @@ function App() {
       <Route path="/reset_password" element={<Layout><Reset_password /></Layout>} />
       <Route path="/QandA" element={<Layout_home><QandA /></Layout_home>} />
       <Route path="/admin_register" element={<Layout_home><Admin_register /></Layout_home>} />
-       <Route path="/Dashboard" element={<Layout_home><Dashboard /></Layout_home>} />
       {/* Protected routes */}
       <Route element={<ProtectedRoute />}>
         <Route path="/Dashboard" element={<Layout_home><Dashboard /></Layout_home>} />
         <Route path="/calendar" element={<Layout_home><Calendar /></Layout_home>} />
         <Route path="/reminder" element={<Layout_home><ReminderPage /></Layout_home>} />
         <Route path="/account" element={<Layout_home><Account /></Layout_home>} />
-        
-        
+        <Route path="/Dashboard" element={<Layout_home><Dashboard /></Layout_home>} />
       </Route>
 
       {/* Fallback 404 */}
