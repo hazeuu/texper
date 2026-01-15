@@ -7,10 +7,11 @@
   color: #cccfda;
   background-color: #3e44eb96;
   text-align: left;
-  overflow-x: auto;
+  overflow-x: hidden;
   display: flex;
   border: 0;
   overflow-y: hidden;
+  margin: 0;
 }
 .border_footer h4{
   width: 300px;
@@ -41,7 +42,7 @@ color: white;
   padding: 10px;
   width: 100%;
   display: flex;
-  margin: auto;
+  margin: 0;
   z-index: 1;
   box-sizing: border-box;
 }
